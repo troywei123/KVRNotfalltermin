@@ -1,10 +1,6 @@
-import json
-import re
+import json,re,time,random,os
 import requests
 import ddddocr
-import time
-import random
-import sys, os
 
 class KVR():
 
