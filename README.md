@@ -1,3 +1,3 @@
-Inspired by [text](https://github.com/okainov/munich-scripts).
+Inspired by [munich-scripts](https://github.com/okainov/munich-scripts).
 
-OCR provided by [text](https://github.com/sml2h3/ddddocr)
+OCR provided by [ddddocr](https://github.com/sml2h3/ddddocr)
