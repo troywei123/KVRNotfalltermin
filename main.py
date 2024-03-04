@@ -19,7 +19,6 @@ def get_termins(buro):
     s = requests.Session()
     
     # First request to get and save cookies
-    
     first_page = s.get(buro.get_frame_url())
     try:
         token = re.search('FRM_CASETYPES_token" value="(.*?)"', first_page.text).group(1)
@@ -27,22 +26,15 @@ def get_termins(buro):
         token = None
     # print(token)
 
-    
     #image OCR
     captcha_response = s.get(buro.get_capchaimg_url(), verify=False)
     # print(captcha_response.text)
     with open ('verify.png', mode= 'wb') as f:
         f.write(captcha_response.content)
-        
-
-    
     with open('verify.png', mode='rb') as f:
         img=f.read()
         
-    # sys.stdout =open(os.devnull,'w')    
     ocr=ddddocr.DdddOcr()    
-
-    # sys.stdout =sys.__stdout__
     code=ocr.classification(img)
     #manual input
     # code=input('input captcha：')
@@ -54,12 +46,9 @@ def get_termins(buro):
         'FRM_CASETYPES_token': token,
         'captcha_code': code
     }
-
     response = s.post(buro.get_frame_url(), termin_data)
     txt = response.text
-
     json_str = re.search('jsonAppoints = \'(.*?)\'', txt).group(1)
-  
     appointments = json.loads(json_str)
 
     return appointments
