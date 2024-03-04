@@ -1,4 +1,4 @@
-import json,re,time,random,os
+import json,re,time,random
 import requests
 import ddddocr
 
@@ -75,7 +75,8 @@ if __name__ == '__main__':
             try:  
                 appointment_data = get_termins(KVR)
             except AttributeError:
-                print('one failure to identify the captcha, another try')
+                print('fail to identify the captcha, automatically proceed to another try')
+                #Caution with time setting!
                 time.sleep(random.randint(2,5))
                 continue
             break
@@ -87,10 +88,11 @@ if __name__ == '__main__':
         for day in appointments:
             if len(appointments[day]):
                 print('yes!')
+                #Bool availiable kept for further application
                 availiable=True
                 break
                 
-        print('No termin, continue refresh in 10-20 second')     
-        
+        print('No termin, will continue refreshing in 10-20 second')     
+        #Caution with time setting!
         time.sleep(random.randint(10,20))        
 
