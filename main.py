@@ -1,6 +1,7 @@
-import json,re,time,random
+import json,re,time,random,sys
 import requests
 import ddddocr
+import winsound
 
 class KVR():
 
@@ -54,7 +55,8 @@ def get_termins(buro):
     return appointments
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':    
+    
 
     # search for Termin, gap 10-20 second
     while True:
@@ -66,7 +68,7 @@ if __name__ == '__main__':
             except AttributeError:
                 print('fail to identify the captcha, automatically proceed to another try')
                 #Caution with time setting!
-                time.sleep(random.randint(2,5))
+                time.sleep(random.randint(1,1))
                 continue
             break
         
@@ -77,11 +79,13 @@ if __name__ == '__main__':
         for day in appointments:
             if len(appointments[day]):
                 print('yes!')
+                winsound.Beep(523,3000)
                 #Bool availiable kept for further application
                 availiable=True
                 break
-                
+        if availiable:
+            break     
         print('No termin, will continue refreshing in 10-20 second')     
         #Caution with time setting!
-        time.sleep(random.randint(10,20))        
+        time.sleep(random.randint(1,1))        
 
