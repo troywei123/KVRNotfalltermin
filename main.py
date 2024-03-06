@@ -1,4 +1,4 @@
-import json,re,time,random,sys
+import json,re,time,random
 import requests
 import ddddocr
 import winsound
@@ -35,8 +35,9 @@ def get_termins(buro):
     with open('verify.png', mode='rb') as f:
         img=f.read()
         
-    ocr=ddddocr.DdddOcr()    
+    ocr=ddddocr.DdddOcr(show_ad=False)    
     code=ocr.classification(img)
+    
     #manual input
     # code=input('input captcha：')
     # print(code)
@@ -57,7 +58,10 @@ def get_termins(buro):
 
 if __name__ == '__main__':    
     
-
+    print('\033[91m'+'Sound test, please adjust your computer volume'+'\x1b[0m')
+    print('\033[91m'+'When success, output will be in red like this line'+'\x1b[0m')
+    winsound.Beep(523,3000)
+    print('********Start refreshing*********')
     # search for Termin, gap 10-20 second
     while True:
         
@@ -66,7 +70,7 @@ if __name__ == '__main__':
             try:  
                 appointment_data = get_termins(KVR)
             except AttributeError:
-                print('fail to identify the captcha, automatically proceed to another try')
+                print('Fail to identify the captcha, automatically proceed to another try')
                 #Caution with time setting!
                 time.sleep(random.randint(1,1))
                 continue
@@ -78,14 +82,14 @@ if __name__ == '__main__':
         
         for day in appointments:
             if len(appointments[day]):
-                print('yes!')
+                print('\033[91m'+'Yes! Go get Termin!!'+'\x1b[0m')
                 winsound.Beep(523,3000)
                 #Bool availiable kept for further application
                 availiable=True
                 break
         if availiable:
             break     
-        print('No termin, will continue refreshing in 10-20 second')     
+        print('No termin, will continue refreshing')     
         #Caution with time setting!
         time.sleep(random.randint(1,1))        
 
