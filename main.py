@@ -72,7 +72,7 @@ if __name__ == '__main__':
             except AttributeError:
                 print('Fail to identify the captcha, automatically proceed to another try')
                 #Caution with time setting!
-                time.sleep(random.randint(1,1))
+                time.sleep(random.randint(1,2))
                 continue
             break
         
@@ -91,5 +91,5 @@ if __name__ == '__main__':
             break     
         print('No termin, will continue refreshing')     
         #Caution with time setting!
-        time.sleep(random.randint(1,1))        
+        time.sleep(random.randint(1,2))        
 
