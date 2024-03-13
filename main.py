@@ -1,7 +1,7 @@
 import json,re,time,random
 import requests
 import ddddocr
-import winsound
+from beepy import beep
 
 class KVR():
 
@@ -60,7 +60,8 @@ if __name__ == '__main__':
     
     print('\033[91m'+'Sound test, please adjust your computer volume'+'\x1b[0m')
     print('\033[91m'+'When success, output will be in red like this line'+'\x1b[0m')
-    winsound.Beep(523,3000)
+    beep(sound=1)
+    beep(sound='success')
     print('********Start refreshing*********')
     # search for Termin, gap 10-20 second
     while True:
@@ -83,7 +84,8 @@ if __name__ == '__main__':
         for day in appointments:
             if len(appointments[day]):
                 print('\033[91m'+'Yes! Go get Termin!!'+'\x1b[0m')
-                winsound.Beep(523,3000)
+                beep(sound=1)
+                beep(sound='success')
                 #Bool availiable kept for further application
                 availiable=True
                 break
